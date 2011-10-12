@@ -1,9 +1,11 @@
 # encoding: utf-8
+require 'carrierwave/processing/mime_types'
 
 class Kuhsaft::AssetUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or ImageScience support:
   include CarrierWave::RMagick
+  include CarrierWave::MimeTypes
   #include CarrierWave::ImageScience
 
   # Choose what kind of storage to use for this uploader:
@@ -27,6 +29,8 @@ class Kuhsaft::AssetUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  
+  process :set_content_type
 
   # Create different versions of your uploaded files:
   version :thumb do
